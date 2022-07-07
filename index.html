@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        video{
+            max-width: 500px;
+            width: 95%;
+            border-radius: 10px;
+        }
+        #result{
+            background: blue;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 95%;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <video></video>
+    <div id="result">No data scaned</div>
+    </center>
+
+    <script type="module">
+        import QrScanner from '/script/qr-scanner.min.js';
+        const videoElem = document.querySelector("video")
+        const camQrResult = document.getElementById('result');
+
+        const qrScanner = new QrScanner(videoElem, result => camQrResult.innerHTML = result.data, {
+            highlightScanRegion: true,
+            highlightCodeOutline: true,
+        });
+
+        qrScanner.start();
+
+    </script>
+</body>
+
+</html>
